@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio</title>
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #0f172a;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --accent: #6366f1; /* Indigo */
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* --- 2. BACKGROUND ANIMATION --- */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.15), transparent 25%);
+        }
+
+        /* --- 3. NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-light); }
+
+        /* --- 4. HERO SECTION (Split Layout) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 10% 0 10%;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-text span {
+            color: var(--accent);
+        }
+
+        .hero-text p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- 5. PROJECTS GRID (Bento Style) --- */
+        .projects {
+            padding: 5rem 10%;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.4s;
+            position: relative;
+            group: hover;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .card-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            color: var(--text-light);
+        }
+
+        /* --- 6. SKILLS SECTION (Visual) --- */
+        .skills {
+            padding: 5rem 10%;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-pill {
+            padding: 1rem 2rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            cursor: default;
+        }
+
+        .skill-pill:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 100px;
+            }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text p { margin: 0 auto 2rem auto; }
+            .hero-image { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animation -->
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Hey, I'm Ishu Pal</div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Designing the <br><span>Digital Future</span></h1>
+            <p>I'm a creative developer who builds immersive web experiences. I blend code with art to create interfaces that people love to use.</p>
+            <a href="#work" class="cta-btn">View My Work</a>
+        </div>
+        <div class="hero-image">
+            <!-- Using a high quality Unsplash image -->
+            <img src="my1.jpeg" alt="Creative Workspace">
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work" class="projects">
+        <div class="section-header">
+            <h2>Selected Works</h2>
+            <p style="color: var(--text-gray);">A collection of projects that define my journey.</p>
+        </div>
+
+        <div class="grid">
+            <!-- Project 1 -->
+            <div class="card">
+                <a href="https://ai-resume-ranker-1.streamlit.app/"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Project 1"></a>
+                <div class="card-content">
+                    <h3>Resume Ranker</h3>
+                    <p>A comprehensive data visualization tool for tracking user growth and engagement metrics.</p>
+                    <div class="tags">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card">
+                <a href="http://127.0.0.1:5502/index.html"><img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Project 2"></a>
+                <div class="card-content">
+                    <h3>Calculator</h3>
+                    <p>Redesigning the Calculator experience with a focus on accessibility and dark mode.</p>
+                    <div class="tags">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Project 3 -->
+            <div class="card">
+                <a href="http://127.0.0.1:5503/index.html"><img src="weather.jpg" class="card-img" alt="Project 2"></a>
+                <div class="card-content">
+                    <h3>Weather App</h3>
+                    <p>Here you check for the temperature, humidity and wind speed.</p>
+                    <div class="tags">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Project 4 -->
+            <div class="card">
+                <a href="https://ishupal02.github.io/kitabey/"><img src="book.avif" class="card-img" alt="Project 3"></a>
+                <div class="card-content">
+                    <h3>Kitabey</h3>
+                    <p>Read Books For free.</p>
+                    <div class="tags">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <h2>My Toolkit</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skill-pill">JavaScript</div>
+            <div class="skill-pill">React</div>
+            <div class="skill-pill">Node.js</div>
+            <div class="skill-pill">Python</div>
+            <div class="skill-pill">Figma</div>
+            <div class="skill-pill">UI Design</div>
+            <div class="skill-pill">Git</div>
+            <div class="skill-pill">AWS</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h2>Let's work together.</h2>
+        <p style="margin: 1rem 0;">Have a project in mind? Let's build something amazing.</p>
+        <a href="mailto:hello@example.com" class="cta-btn">Say Hello</a>
+        <br><br>
+        <p>&copy; 2026 Ishu Pal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple scroll reveal effect
+        window.addEventListener('scroll', reveal);
+
+        function reveal(){
+            var reveals = document.querySelectorAll('.card');
+            for(var i = 0; i < reveals.length; i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if(revealtop < windowheight - revealpoint){
+                    reveals[i].style.opacity = '1';
+                    reveals[i].style.transform = 'translateY(0)';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
