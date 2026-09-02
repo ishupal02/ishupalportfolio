@@ -10,7 +10,7 @@ The website focuses on a clean, modern, responsive UI and provides an easy way f
 🚀 Live Portfolio
 
 🌐 Live Website:
-"Visit My Portfolio" (https://ishupal02.github.io/ishupalportfolio/)
+"Visit My Portfolio" ( https://ishupal02.github.io/ishupalportfolio)
 
 📂 GitHub Repository:
 "ishupalportfolio" (https://github.com/ishupal02/ishupalportfolio)
