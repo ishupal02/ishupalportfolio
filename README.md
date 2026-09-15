@@ -37,7 +37,7 @@ Frontend
 
 - HTML5
 - CSS3
-- JavaScript
+- Vanilla JavaScript
 
 Tools & Platforms
 
