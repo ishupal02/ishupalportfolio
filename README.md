@@ -127,13 +127,12 @@ Web Development
 
 Planned improvements for the portfolio include:
 
-- [ ] Add more projects
-- [ ] Add downloadable resume
-- [ ] Improve animations
-- [ ] Add more interactive components
-- [ ] Add dark/light mode
-- [ ] Improve accessibility
-- [ ] Add more achievements and certifications
+- [x] Add downloadable resume / resume button
+- [x] Improve animations (reveal on scroll, smooth theme switch, typewriter effect)
+- [x] Add more interactive components (project category filters, clipboard copy email toast, back-to-top)
+- [x] Add dark/light mode with persistence & system preference
+- [x] Improve accessibility (contrast, aria-labels, prefers-reduced-motion)
+- [x] Add education & achievements timeline
 - [ ] Continuously update the portfolio with new projects
 
 
